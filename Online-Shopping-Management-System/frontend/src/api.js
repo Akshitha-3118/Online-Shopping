@@ -1,0 +1,3 @@
+const BASE=import.meta.env.VITE_API_BASE_URL||'http://localhost:8080/api';
+export async function api(path,opts={}){const token=localStorage.getItem('shopToken');const r=await fetch(BASE+path,{...opts,headers:{...(opts.body?{'Content-Type':'application/json'}:{}),...(token?{Authorization:'Bearer '+token}:{}),...opts.headers}});const t=await r.text();let d;try{d=t?JSON.parse(t):null}catch{d=t}if(!r.ok)throw Error(d?.message||`Request failed (${r.status})`);return d}
+export const money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Number(n||0));

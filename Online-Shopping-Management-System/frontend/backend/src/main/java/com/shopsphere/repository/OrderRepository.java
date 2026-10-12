@@ -1,0 +1,1 @@
+package com.shopsphere.repository;import com.shopsphere.model.ShopOrder;import org.springframework.data.jpa.repository.JpaRepository;import java.util.*;public interface OrderRepository extends JpaRepository<ShopOrder,Long>{List<ShopOrder> findByUserIdOrderByCreatedAtDesc(Long userId);List<ShopOrder> findAllByOrderByCreatedAtDesc();}
